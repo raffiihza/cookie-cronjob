@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cookie Converter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Cookie Converter</h2>
+  <form id="cookieForm">
+    <div class="form-group">
+      <label for="jsonInput">JSON:</label>
+      <textarea class="form-control" id="jsonInput" rows="10"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Convert</button>
+  </form>
+  <br>
+  <h2>Result:</h2>
+  <p id="result"></p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#cookieForm").submit(function(e){
+    e.preventDefault();
+    var jsonInput = JSON.parse($("#jsonInput").val());
+    var result = jsonInput.map(function(cookie) {
+      return cookie.name + "=" + cookie.value;
+    }).join(", ");
+    $("#result").text(result);
+  });
+});
+</script>
+
+</body>
+</html>
